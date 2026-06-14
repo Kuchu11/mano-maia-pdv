@@ -1,6 +1,15 @@
 # 🏪 Mano Maia PDV — Sistema Comercial de Ponto de Venda
 
 <div align="center">
+  <!-- Botão Direto para os Prints no LinkedIn -->
+  <a href="https://www.linkedin.com/in/wesley-campelo-640441385/details/projects/" target="_blank">
+    <img src="https://img.shields.io/badge/Acesse_as_Telas_do_Sistema-Clique_Aqui-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Ver Telas no LinkedIn" />
+  </a>
+</div>
+
+<br>
+
+<div align="center">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
   <img src="https://img.shields.io/badge/Electron-47848F?style=for-the-badge&logo=electron&logoColor=white" alt="Electron" />
@@ -33,6 +42,15 @@ A interface visual do **Mano Maia PDV** foi projetada para oferecer uma experiê
 > 💡 **Destaque de Engenharia Visual:** 
 > Todo o design e a criação das telas foram concebidos com domínio técnico no **Stitch**, permitindo uma arquitetura de componentes visuais consistente, paleta de cores harmoniosa (com foco na identidade visual roxa da marca) e total responsividade para o operador do sistema.
 
+---
 
+## ⚙️ Engenharia de Distribuição (Deploy Autônomo)
+
+Um dos grandes diferenciais técnicos deste projeto está na sua engenharia de implantação. O software foi configurado e compilado em um ambiente de produção isolado para gerar um **instalador Standalone (`.exe`)**.
+
+* **Zero Dependências Externas:** O instalador final empacota o motor do Node.js, as dependências do SQLite e os binários do Electron.
+* **Instalação Silenciosa:** Ao executar o arquivo de setup em qualquer máquina com Windows 64-bits, o sistema cria automaticamente a estrutura de diretórios e carimba o atalho na Área de Trabalho do usuário sem exigir configurações técnicas adicionais do cliente.
+
+---
 
 <p align="center">Desenvolvido por <strong>Wesley</strong> 🚀</p>
