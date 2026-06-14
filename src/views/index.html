@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Maia</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-area">
+            <i data-lucide="printer" class="logo-icon"></i>
+            <h1>Mano Maia <span style="color: var(--success-bg);"></span></h1>
+            <span class="sublogo"></span>
+        </div>
+        <div class="header-actions">
+            <span class="status-badge">
+                <i data-lucide="circle" class="status-dot"></i> Loja Aberta
+            </span>
+            <button id="btn-menu-mobile" class="menu-btn"><i data-lucide="menu"></i></button>
+            <div class="Andreia-profile">
+                <i data-lucide="user-check"></i>
+                <span>Andreia</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="system-container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#caixa"><i data-lucide="wallet"></i> Caixa</a>
+                    </li>
+                    <li>
+                        <a href="#clientes-fiados"><i data-lucide="users"></i> Clientes/Fiados</a>
+                    </li>
+                    <li>
+                        <a href="#estoque"><i data-lucide="package"></i> Estoque</a>
+                    </li>
+                    <li>
+                        <a href="#historico-relatorios"><i data-lucide="file-text"></i> Histórico/Relatórios</a>
+                    </li>
+                    <li>
+                        <a href="#configuracoes"><i data-lucide="settings"></i> Configurações</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content-area">
+            
+            <section id="dashboard" class="tab-content active">
+                <div class="page-header">
+                    <h2>Resumo de Hoje</h2>
+                    <p id="data-atual" class="date-display"></p>
+                </div>
+
+               <div class="inspiration-banner">
+                    <span class="banner-tag">INSPIRAÇÃO DO DIA</span>
+                    <p id="frase-painel">"Tudo o que fizerem, façam de todo o coração, como para o Senhor."</p>
+                    <small id="autor-painel" style="display: block; margin-top: 8px; font-size: 13px; opacity: 0.85; font-weight: 600;">— Colossenses 3:23</small>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="card-metric">
+                        <div class="metric-icon"><i data-lucide="banknote"></i></div>
+                        <div class="metric-info">
+                            <span>Faturamento Total (Hoje)</span>
+                            <strong id="faturamento-total-exibicao">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric highlight">
+                        <div class="metric-icon"><i data-lucide="trending-up"></i></div>
+                        <div class="metric-info">
+                            <span>Seu Lucro</span>
+                            <strong id="lucro-calculado">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon"><i data-lucide="layers"></i></div>
+                        <div class="metric-info">
+                            <span>Total de Atendimentos</span>
+                            <strong id="total-atendimentos-contador">0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main-grid">
+                    <div class="card-funcional">
+                        <h3><i data-lucide="plus-circle"></i> Novo Atendimento</h3>
+                        <div class="form-group">
+                            <label class="label-lg">Tipo de Serviço</label>
+                            <select id="atendimento-servico">
+                                <option value="xerox">Xerox / Cópias</option>
+                                <option value="papel_fotografico">Papel Fotográfico</option>
+                                <option value="papel_adesivo">Papel Adesivo / Rótulos</option>
+                                <option value="polaroids">Polaroids</option>
+                                <option value="mimos">Mimos Personalizados</option>
+                                <option value="encadernacao">Encadernação</option>
+                                <option value="emplastificacao">Emplastificação / Plastificação</option>
+                                <option value="copia_louvores">Cópia de Louvores / Musica</option>
+                                <option value="escaneamento">Escaneamento de Documentos</option>
+                                <option value="topo_bolo">Topo de Bolo</option>
+                                <option value="tags">Tags Criativas</option>
+                                <option value="cartao_agradecimento">Cartão de Agradecimento</option>
+                                <option value="cartao_visita">Cartão de Visita / Panfleto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Valor Cobrado (R$)</label>
+                            <input type="number" id="atendimento-valor" placeholder="R$ 0,00" step="0.01">
+                        </div>
+                        <button id="btn-registrar-venda" class="btn-primary">Registrar e Atualizar</button>
+                    </div>
+
+                    <div class="card-funcional">
+                        <h3><i data-lucide="sticky-note"></i> Lembretes Rápidos</h3>
+                        <textarea id="lembretes-textarea" placeholder="Escreva aqui anotações importantes para o dia...&#10;Ex: Entregar os topos de bolo de fulano."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section id="caixa" class="tab-content">
+                <div class="page-header">
+                    <h2>Fluxo de Caixa</h2>
+                    <p class="date-display">Gerenciamento de Entradas, Saídas e Métodos de Pagamento</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #e6f6ec; color: var(--tertiary);"><i data-lucide="arrow-up-right"></i></div>
+                        <div class="metric-info">
+                            <span>Entradas Totais</span>
+                            <strong id="caixa-entradas">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #fde8e8; color: var(--error);"><i data-lucide="arrow-down-left"></i></div>
+                        <div class="metric-info">
+                            <span>Saídas</span>
+                            <strong id="caixa-saidas">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon"><i data-lucide="wallet"></i></div>
+                        <div class="metric-info">
+                            <span>Saldo em Caixa</span>
+                            <strong id="caixa-saldo-atual">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main-grid">
+                    <div class="card-funcional">
+                        <h3><i data-lucide="arrow-left-right"></i> Nova Movimentação</h3>
+                        <div class="form-group">
+                            <label class="label-lg">Tipo de Movimentação</label>
+                            <select id="caixa-tipo-movimentacao">
+                                <option value="entrada">Entrada (Troco Inicial)</option>
+                                <option value="saida">Saída (Pagamento Diverso)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Forma de Pagamento / Canal</label>
+                            <select id="caixa-metodo-pagamento">
+                                <option value="dinheiro">Dinheiro Físico</option>
+                                <option value="pix">PIX / Transferência</option>
+                                <option value="debito">Cartão de Débito</option>
+                                <option value="credito">Cartão de Crédito</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Descrição / Motivo</label>
+                            <input type="text" id="caixa-descricao" placeholder="Ex: Compra de bobina, Entrada troco...">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Valor (R$)</label>
+                            <input type="number" id="caixa-valor" placeholder="R$ 0,00" step="0.01">
+                        </div>
+                        <button id="btn-registrar-movimentacao" class="btn-primary">Lançar no Caixa</button>
+                    </div>
+
+                    <div class="card-funcional" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3><i data-lucide="lock"></i> Fechamento do Dia</h3>
+                            <p style="color: var(--on-surface-variant); margin-bottom: 20px; line-height: 22px;">
+                                Use esta função para conferir o dinheiro físico do caixa com o sistema e encerrar o expediente com segurança.
+                            </p>
+                        </div>
+                        <button id="btn-fechar-caixa" class="btn-primary" style="background-color: var(--secondary); max-width: 100%;">
+                            <i data-lucide="archive" style="display: inline-block; width: 16px; height: 16px; vertical-align: middle; margin-right: 8px;"></i>
+                            Fechar Caixa Atual
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clientes-fiados" class="tab-content">
+                <div class="page-header">
+                    <h2>Controle de Fiados</h2>
+                    <p class="date-display">Gerenciamento de Contas Pendentes e Clientes</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #fde8e8; color: var(--error);"><i data-lucide="alert-circle"></i></div>
+                        <div class="metric-info">
+                            <span>Total a Receber</span>
+                            <strong id="fiado-total-devedor">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon"><i data-lucide="users"></i></div>
+                        <div class="metric-info">
+                            <span>Clientes Pendentes</span>
+                            <strong id="fiado-qtd-devedores">0</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #e6f6ec; color: var(--tertiary);"><i data-lucide="shield-check"></i></div>
+                        <div class="metric-info">
+                            <span>Total Recebido (Mês)</span>
+                            <strong id="fiado-total-recebido">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main-grid">
+                    <div class="card-funcional">
+                        <h3><i data-lucide="user-plus"></i> Registrar Novo Fiado</h3>
+                        <div class="form-group">
+                            <label class="label-lg">Nome do Cliente</label>
+                            <input type="text" id="fiado-nome-cliente" placeholder="Ex: João Silva da Silva...">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Descrição do Débito</label>
+                            <input type="text" id="fiado-descricao-servico" placeholder="Ex: Topo de bolo personalizado + Polaroid">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Valor Devido (R$)</label>
+                            <input type="number" id="fiado-valor-debito" placeholder="R$ 0,00" step="0.01">
+                        </div>
+                        <button id="btn-registrar-fiado" class="btn-primary">Registrar Débito</button>
+                    </div>
+
+                    <div class="card-funcional">
+                        <h3><i data-lucide="alert-triangle"></i> Maiores Pendências</h3>
+                        <div id="container-lista-fiados" style="margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estoque" class="tab-content">
+                <div class="page-header">
+                    <h2>Controle de Estoque</h2>
+                    <p class="date-display">Monitoramento de Insumos e Produtos Disponíveis</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="card-metric">
+                        <div class="metric-icon"><i data-lucide="box"></i></div>
+                        <div class="metric-info">
+                            <span>Total de Itens</span>
+                            <strong id="estoque-total-itens">0</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #fff8e1; color: #f59e0b;"><i data-lucide="alert-triangle"></i></div>
+                        <div class="metric-info">
+                            <span>Estoque Baixo</span>
+                            <strong id="estoque-qtd-baixo">0</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #e6f6ec; color: var(--tertiary);"><i data-lucide="check-circle-2"></i></div>
+                        <div class="metric-info">
+                            <span>Status Geral</span>
+                            <strong id="estoque-status-geral">Regular</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main-grid">
+                    <div class="card-funcional">
+                        <h3><i data-lucide="package-plus"></i> Gerenciar Item</h3>
+                        <div class="form-group">
+                            <label class="label-lg">Nome do Produto/Insumo</label>
+                            <input type="text" id="estoque-nome" placeholder="Ex: Resma Papel A4, Bobina Térmica, Película de Plastificação...">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Quantidade Atual</label>
+                            <input type="number" id="estoque-qtd" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="label-lg">Estoque Mínimo (Alerta)</label>
+                            <input type="number" id="estoque-minimo" placeholder="Ex: 5">
+                        </div>
+                        <button id="btn-salvar-estoque" class="btn-primary">Atualizar Estoque</button>
+                    </div>
+
+                    <div class="card-funcional">
+                        <h3><i data-lucide="list-ordered"></i> Níveis de Suprimento</h3>
+                        <div id="container-lista-estoque" style="margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="historico-relatorios" class="tab-content">
+                <div class="page-header">
+                    <h2>Histórico e Relatórios</h2>
+                    <p class="date-display">Consulta de Fechamentos e Faturamentos Anteriores</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #e6f6ec; color: var(--tertiary);"><i data-lucide="calendar"></i></div>
+                        <div class="metric-info">
+                            <span>Faturamento Mensal</span>
+                            <strong id="relatorio-faturamento-mes">R$ 0,00</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon"><i data-lucide="bar-chart-3"></i></div>
+                        <div class="metric-info">
+                            <span>Média de Atendimentos</span>
+                            <strong id="relatorio-media-atendimentos">0 / dia</strong>
+                        </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-icon" style="background-color: #fde8e8; color: var(--error);"><i data-lucide="split"></i></div>
+                        <div class="metric-info">
+                            <span>Total Retirado (Mês)</span>
+                            <strong id="relatorio-total-sangrias">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main-grid">
+                    <div class="card-funcional">
+                        <h3><i data-lucide="filter"></i> Filtrar Período</h3>
+                        <div class="form-group">
+                            <label class="label-lg">Mês de Referência</label>
+                            <select id="relatorio-filtro-mes">
+                                <option value="atual">Mês Atual</option>
+                                <option value="anterior">Mês Anterior</option>
+                            </select>
+                        </div>
+                        <button id="btn-exportar-relatorio" class="btn-primary" style="background-color: var(--secondary);">
+                            <i data-lucide="download" style="display: inline-block; width: 16px; height: 16px; vertical-align: middle; margin-right: 8px;"></i>
+                            Exportar Dados
+                        </button>
+                    </div>
+
+                    <div class="card-funcional">
+                        <h3><i data-lucide="history"></i> Livro Caixa / Fechamentos</h3>
+                        <div id="container-lista-historico" style="margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="configuracoes" class="tab-content">
+                <div class="page-header">
+                    <h2>Configurações do Sistema</h2>
+                    <p class="date-display">Ajustes de Parâmetros e Segurança do Banco de Dados</p>
+                </div>
+
+                <div class="dashboard-main-grid">
+                    <div class="card-funcional">
+                        <h3><i data-lucide="sliders"></i> Parâmetros do Sistema</h3>
+                        <div class="form-group">
+                            <label class="label-lg">Porcentagem de Comissão (%)</label>
+                            <input type="number" id="config-comissao" placeholder="30" min="0" max="100" step="1">
+                        </div>
+                        <button id="btn-salvar-config" class="btn-primary">Salvar Parâmetros</button>
+                    </div>
+
+                    <div class="card-funcional" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3><i data-lucide="shield-alert" style="color: var(--error);"></i> Área de Segurança</h3>
+                            <p style="color: var(--on-surface-variant); margin-bottom: 20px; line-height: 22px;">
+                                Atenção: A ação abaixo limpará de forma definitiva todo o histórico e faturamentos gravados. Requer validação com a chave de administrador do sistema.
+                            </p>
+                        </div>
+                        <button id="btn-limpar-banco" class="btn-primary" style="background-color: var(--error); max-width: 100%;">
+                            <i data-lucide="trash-2" style="display: inline-block; width: 16px; height: 16px; vertical-align: middle; margin-right: 8px;"></i>
+                            Zerar Todo o Sistema 
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
