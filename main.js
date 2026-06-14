@@ -5,7 +5,7 @@ const sqlite3 = require('sqlite3').verbose();
 let mainWindow;
 let db;
 
-// PARAMETRIZADO: Recebe o nome do banco dinamicamente
+
 function iniciarBancoDados(nomeBanco) {
     const dbPath = path.join(__dirname, 'database', nomeBanco);
     db = new sqlite3.Database(dbPath, (err) => {
@@ -14,7 +14,7 @@ function iniciarBancoDados(nomeBanco) {
         } else {
             console.log(`Conectado ao banco de dados [${nomeBanco}] com sucesso.`);
             
-            // 1. Cria a tabela de Fiados
+            
             const sqlFiados = `CREATE TABLE IF NOT EXISTS fiados (
                 id INTEGER PRIMARY KEY,
                 cliente TEXT NOT NULL,
@@ -24,7 +24,7 @@ function iniciarBancoDados(nomeBanco) {
             )`;
             criarTabelas(sqlFiados);
 
-            // 2. Cria a tabela de Estoque
+            
             const sqlEstoque = `CREATE TABLE IF NOT EXISTS estoque (
                 id INTEGER PRIMARY KEY,
                 nome TEXT NOT NULL,
@@ -33,7 +33,7 @@ function iniciarBancoDados(nomeBanco) {
             )`;
             criarTabelas(sqlEstoque);
 
-            // 3. Cria a tabela de Caixa
+            
             const sqlCaixa = `CREATE TABLE IF NOT EXISTS caixa (
                 id INTEGER PRIMARY KEY,
                 tipo TEXT NOT NULL,          -- 'entrada' ou 'saida'
@@ -47,7 +47,7 @@ function iniciarBancoDados(nomeBanco) {
     });
 }
 
-// PARAMETRIZADO: Executa qualquer comando SQL de criação enviado por parâmetro
+
 function criarTabelas(comandoSQL) {
     db.serialize(() => {
         db.run(comandoSQL, (err) => {
@@ -56,7 +56,7 @@ function criarTabelas(comandoSQL) {
     });
 }
 
-// PARAMETRIZADO: Recebe a visão (HTML) e o arquivo Preload por parâmetro
+
 function criarJanela(caminhoVisao, caminhoPreload) {
     mainWindow = new BrowserWindow({
         width: 1200,
@@ -77,9 +77,7 @@ function criarJanela(caminhoVisao, caminhoPreload) {
     });
 }
 
-// ==========================================
-// CANAIS DE COMUNICAÇÃO IPC: FIADOS
-// ==========================================
+
 
 ipcMain.handle('buscar-fiados', async () => {
     return new Promise((resolve, reject) => {
@@ -109,9 +107,7 @@ ipcMain.handle('deletar-fiado', async (event, id) => {
     });
 });
 
-// ==========================================
-// CANAIS DE COMUNICAÇÃO IPC: ESTOQUE
-// ==========================================
+
 
 ipcMain.handle('buscar-estoque', async () => {
     return new Promise((resolve, reject) => {
@@ -132,9 +128,7 @@ ipcMain.handle('salvar-estoque', async (event, itemEstoque) => {
     });
 });
 
-// ==========================================
-// CANAIS DE COMUNICAÇÃO IPC: FLUXO DE CAIXA
-// ==========================================
+
 
 ipcMain.handle('buscar-caixa', async () => {
     return new Promise((resolve, reject) => {
@@ -162,9 +156,7 @@ ipcMain.handle('salvar-movimentacao', async (event, novaMovimentacao) => {
     });
 });
 
-// ==========================================
-// INICIALIZAÇÃO DO APLICATIVO
-// ==========================================
+
 
 app.whenReady().then(() => {
     iniciarBancoDados('manomaia.db');
